@@ -1,12 +1,12 @@
-import { createElement } from '../render';
+import {createElement} from '../render.js';
 
-function createPointsListTemplate() {
-  return '<ul class="trip-events__list"></ul>';
+function createBoardTemplate() {
+  return '<section class="trip-events"></section>';
 }
 
-export default class PointsListView {
+export default class BoardView {
   getTemplate() {
-    return createPointsListTemplate();
+    return createBoardTemplate();
   }
 
   getElement() {
