@@ -1,9 +1,13 @@
 import {render} from '../render.js';
 import BoardView from '../view/boardView.js';
 import RoutePointView from '../view/routePointView.js';
-import SortListView from '../view/sortView.js';
+import SortView from '../view/sortView.js';
 import NewFormView from '../view/createFormView.js';
 import EditFormView from '../view/editFormView.js';
+import FilterListView from '../view/filterListView';
+
+const siteMainElement = document.querySelector('.page-body');
+const siteHeaderElement = siteMainElement.querySelector('.trip-controls__filters');
 
 export default class BoardPresenter {
   boardComponent = new BoardView();
@@ -17,8 +21,9 @@ export default class BoardPresenter {
 
   init() {
     this.boardPoints = [...this.routePointModel.getPoints()];
+    render(new FilterListView(), siteHeaderElement);
     render(this.boardComponent, this.boardContainer);
-    render(new SortListView(), this.boardComponent.getElement());
+    render(new SortView(), this.boardComponent.getElement());
     render(new NewFormView(), this.boardComponent.getElement());
     for (let i = 0; i < this.boardPoints.length; i++) {
       const offers = this.offersModel.getOffersByType(this.boardPoints[i].type);
